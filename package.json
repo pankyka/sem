@@ -1,0 +1,15 @@
+{
+    "name": "sem",
+    "version": "1.0.0",
+    "description": "Native, interprocess semaphore module for Node.js",
+    "main": "index.js",
+    "scripts": {
+        "build": "node-gyp configure build",
+        "test": "node test/sem.js"
+    },
+    "author": "Gábor Pankotay <mrpanky@gmail.com>",
+    "license": "Apache 2.0",
+    "dependencies": {
+        "nan": "^2.5.0"
+    }
+}
