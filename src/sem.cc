@@ -85,19 +85,7 @@ inline Persistent<Function> &SemaphoreFactory::constructor()
     static Persistent<Function> ctor;
     return ctor;
 }
-/*
-SemaphoreFactory::~SemaphoreFactory()
-{
-    if (sem_unlink(semaphore_name.c_str()) < 0)
-    {
-        ThrowError(ErrnoException(
-            errno,
-            "sem_unlink",
-            strerror(errno)));
-        return;
-    }
-}
-*/
+
 NAN_METHOD(SemaphoreFactory::Acquire)
 {
     long timeout_millisec = -1;
