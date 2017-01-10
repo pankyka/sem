@@ -16,6 +16,8 @@ limitations under the License.
 
 #include <nan.h>
 
+#define SEM_NAME(name) "/" + name
+
 class SemaphoreFactory : public Nan::ObjectWrap
 {
   public:

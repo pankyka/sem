@@ -55,6 +55,8 @@ NAN_METHOD(SemaphoreFactory::CreateInstance)
 
     String::Utf8Value utf8(info[0]->ToString());
     string name(*utf8);
+    name = SEM_NAME(name);
+
     const int argc = 1;
 
     Local<Value> argv[1] = {New(name).ToLocalChecked()};
@@ -63,10 +65,11 @@ NAN_METHOD(SemaphoreFactory::CreateInstance)
 
 NAN_METHOD(SemaphoreFactory::Instance)
 {
+    String::Utf8Value utf8(info[0]->ToString());
+    string name(*utf8);
+
     if (info.IsConstructCall())
     {
-        String::Utf8Value utf8(info[0]->ToString());
-        string name(*utf8);
         SemaphoreFactory *obj = new SemaphoreFactory(name);
         obj->Wrap(info.This());
         info.GetReturnValue().Set(info.This());
@@ -74,7 +77,8 @@ NAN_METHOD(SemaphoreFactory::Instance)
     else
     {
         const int argc = 1;
-        Local<Value> argv[argc] = {info[0]};
+
+        Local<Value> argv[argc] = {New(name).ToLocalChecked()};
         Local<Function> ctor = New(SemaphoreFactory::constructor());
         info.GetReturnValue().Set(NewInstance(ctor, argc, argv).ToLocalChecked());
     }
@@ -103,7 +107,7 @@ NAN_METHOD(SemaphoreFactory::Acquire)
     Callback *callback = new Callback(info[info.Length() - 1].As<Function>());
 
     SemaphoreFactory *obj = ObjectWrap::Unwrap<SemaphoreFactory>(info.Holder());
-    
+
     obj->mutex = sem_open(obj->semaphore_name.c_str(), O_CREAT, S_IRUSR | S_IWUSR, 1);
 
     if (obj->mutex == SEM_FAILED)
