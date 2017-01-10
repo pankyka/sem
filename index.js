@@ -1,1 +1,1 @@
-module.exports = require('bindings')('sem');
+module.exports = require("../build/Release/sem");
