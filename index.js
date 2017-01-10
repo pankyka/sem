@@ -1,1 +1,1 @@
-module.exports = require("../build/Release/sem");
+module.exports = require("./build/Release/sem");
