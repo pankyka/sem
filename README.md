@@ -29,6 +29,5 @@ EACCES          The caller does not have permission to unlink this semaphore.
 EACCES          The semaphore exists, but the caller does not have permission to open it.
 ENAMETOOLONG    Name was too long.
 ETIMEDOUT       Specified timeout (in ms) expired.
-
 ```
 For more error code see linux man pages.
