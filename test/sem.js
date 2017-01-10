@@ -1,9 +1,9 @@
 const semaphore = require("../build/Release/sem");
 
-semaphore.unlink("fityma");
-const sem1 = semaphore.create("fityma");
-const sem2 = semaphore.create("fityma");
-const sem3 = semaphore.create("fityma");
+semaphore.unlink("somename");
+const sem1 = semaphore.create("somename");
+const sem2 = semaphore.create("somename");
+const sem3 = semaphore.create("somename");
 
 console.log("sem1 try acquire");
 sem1.acquire(function (err) {
