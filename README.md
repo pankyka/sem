@@ -2,5 +2,5 @@
 Native, interprocess semaphore module for Node.js
 
 * [x] OSX
-* [ ] POSIX
+* [x] POSIX
 * [ ] Win32
