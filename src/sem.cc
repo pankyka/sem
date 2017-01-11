@@ -108,7 +108,11 @@ NAN_METHOD(SemaphoreFactory::Acquire)
 
     SemaphoreFactory *obj = ObjectWrap::Unwrap<SemaphoreFactory>(info.Holder());
 
+#ifdef _WIN32
+    //todo win
+#else
     obj->mutex = sem_open(obj->semaphore_name.c_str(), O_CREAT, S_IRUSR | S_IWUSR, 1);
+#endif
 
     if (obj->mutex == SEM_FAILED)
     {
@@ -126,7 +130,11 @@ NAN_METHOD(SemaphoreFactory::Release)
 {
     SemaphoreFactory *obj = ObjectWrap::Unwrap<SemaphoreFactory>(info.Holder());
 
+#ifdef _WIN32
+
+#else
     int result = sem_post(obj->mutex);
+#endif
 
     if (result < 0)
     {
@@ -145,7 +153,11 @@ NAN_METHOD(SemaphoreFactory::Unlink)
         String::Utf8Value utf8(info[0]->ToString());
         string name(*utf8);
 
+#ifdef _WIN32
+        //todo win
+#else
         sem_unlink(name.c_str());
+#endif
     }
 }
 

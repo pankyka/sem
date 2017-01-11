@@ -48,7 +48,9 @@ void AcquireWorker::Execute()
 {
     if (timeout_millisec > 0)
     {
-#ifdef __APPLE__
+#ifdef _WIN32
+        //todo win
+#elif __APPLE__
         sem_timedwait_mach(mutex, timeout_millisec);
 #else
         timespec ts;
@@ -62,7 +64,11 @@ void AcquireWorker::Execute()
     }
     else
     {
+#ifdef _WIN32
+        //todo win
+#else
         sem_wait(mutex);
+#endif
     }
 
     err_no = errno;
