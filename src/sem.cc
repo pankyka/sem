@@ -134,6 +134,7 @@ NAN_METHOD(SemaphoreFactory::Release)
 
 #else
     int result = sem_post(obj->mutex);
+    sem_close(obj->mutex);
 #endif
 
     if (result < 0)
